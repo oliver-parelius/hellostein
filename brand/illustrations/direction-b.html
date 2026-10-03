@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LovAli illustrasjonsretning B: Nordic paper</title>
+  <style>
+    :root {
+      --desk: #f1eee6;
+      --paper: #fffefa;
+      --paper-2: #f8f4ea;
+      --ink: #252a25;
+      --soft: #62685f;
+      --hair: #cecabc;
+      --pine: #2f5d50;
+      --pine-dark: #234a3f;
+      --pine-pale: #dfe8e1;
+      --berry: #e3a64a;
+      --berry-pale: #f8e8c7;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "Schibsted Grotesk", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { color-scheme: light; }
+    body { margin: 0; background: var(--desk); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    button { font: inherit; }
+    .page { width: min(1160px, calc(100% - 40px)); margin: 0 auto; padding: 32px 0 84px; }
+    .topbar { display: flex; justify-content: space-between; align-items: center; padding-bottom: 24px; border-bottom: 1px solid var(--hair); }
+    .brand { display: flex; align-items: center; gap: 9px; font-family: var(--serif); font-size: 19px; font-weight: 700; }
+    .brand-mark, .brand-mark .ali { width: 30px; height: 30px; }
+    .back { color: var(--soft); font-size: 13px; text-decoration: none; }
+    .back:hover { color: var(--pine); }
+    .intro { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: end; padding: 64px 0 70px; }
+    .folio, .number { color: var(--pine); font: italic 14px/1.2 var(--serif); }
+    h1 { margin: 10px 0 0; font: 600 clamp(42px, 6.5vw, 74px)/.98 var(--serif); letter-spacing: -.045em; }
+    .intro p { margin: 0; padding-left: 28px; border-left: 1px solid var(--hair); color: var(--soft); font-size: 17px; line-height: 1.7; }
+    .study { margin-top: 72px; }
+    .study-head { display: grid; grid-template-columns: 52px 1fr minmax(240px, 390px); gap: 16px; align-items: end; margin-bottom: 16px; }
+    h2 { margin: 0; font: 600 clamp(26px, 3vw, 36px)/1.08 var(--serif); letter-spacing: -.025em; }
+    .study-head p { margin: 0; color: var(--soft); font-size: 13px; line-height: 1.55; }
+    .frame { position: relative; overflow: hidden; min-height: 400px; border: 1px solid var(--hair); background-color: var(--paper-2); background-image: radial-gradient(rgba(47,93,80,.09) .55px, transparent .55px); background-size: 6px 6px; }
+    .sheet { background: var(--paper); border: 1px solid #d6d1c5; box-shadow: 9px 9px 0 rgba(47,93,80,.08); }
+
+    /* 1. An orderly chain of three pieces of paper. */
+    .hero-paper { display: grid; grid-template-columns: minmax(220px,.9fr) 150px minmax(260px,1.05fr); align-items: center; gap: 34px; padding: 62px clamp(26px,6vw,76px); }
+    .hero-paper::after { content: ""; position: absolute; left: 16%; right: 14%; top: 52%; border-top: 1px dashed #aaa99f; }
+    .letter { position: relative; z-index: 1; padding: 22px; transform: rotate(-1.2deg); animation: paper-in .7s cubic-bezier(.2,.8,.2,1) both; }
+    .paper-label { color: var(--pine); font: italic 12px/1.2 var(--serif); }
+    .letter strong { display: block; margin: 20px 0 7px; font: 600 18px/1.25 var(--serif); }
+    .letter p, .decision p { margin: 0; color: var(--soft); font-size: 13px; line-height: 1.5; }
+    .letter-rule { width: 68%; height: 1px; margin-top: 22px; background: var(--hair); box-shadow: 0 7px 0 #ddd8cc, 0 14px 0 #e5e0d5; }
+    .ali-bridge { position: relative; z-index: 2; display: grid; justify-items: center; gap: 6px; }
+    .ali-bridge .ali { width: 112px; height: 112px; filter: drop-shadow(5px 7px 0 rgba(47,93,80,.1)); }
+    .ali-bridge span:last-child { padding: 4px 10px; border: 1px solid var(--hair); background: var(--paper); font: italic 11px/1.2 var(--serif); }
+    .decision { position: relative; z-index: 1; padding: 24px; transform: rotate(.8deg); animation: paper-up .8s .18s cubic-bezier(.2,.8,.2,1) both; }
+    .decision::before { content: ""; position: absolute; top: -1px; right: 26px; width: 56px; height: 17px; background: rgba(227,166,74,.35); transform: translateY(-50%) rotate(2deg); }
+    .decision h3 { margin: 18px 0 7px; font: 600 19px/1.25 var(--serif); }
+    .approve { width: 100%; margin-top: 20px; padding: 11px 14px; border: 1px solid var(--pine-dark); background: var(--pine); color: #fff; font-weight: 700; }
+
+    /* 2. Three editorial panels, like a compact field guide. */
+    .field-guide { display: grid; grid-template-columns: repeat(3,1fr); align-items: stretch; padding: 38px; background: var(--paper); }
+    .field-card { position: relative; display: grid; grid-template-rows: 140px auto; padding: 26px; border-right: 1px solid var(--hair); }
+    .field-card:last-child { border-right: 0; }
+    .field-card [data-ali] { align-self: center; justify-self: center; }
+    .field-card .ali { width: 94px; height: 94px; }
+    .field-card:nth-child(1) .ali { transform: rotate(-2deg); }
+    .field-card:nth-child(3) .ali { transform: rotate(2deg); }
+    .field-word { display: inline-block; margin-bottom: 10px; padding-bottom: 4px; border-bottom: 2px solid var(--berry); color: var(--pine); font: italic 13px/1.2 var(--serif); }
+    .field-card h3 { margin: 0 0 8px; font: 600 19px/1.25 var(--serif); }
+    .field-card p { margin: 0; color: var(--soft); font-size: 13px; line-height: 1.5; }
+
+    /* 3. A working sheet with pinned system names. */
+    .tool-sheet { min-height: 530px; }
+    .tool-sheet::before { content: "Verktøykart"; position: absolute; left: 25px; top: 25px; color: var(--soft); font: italic 12px/1 var(--serif); }
+    .orbit { position: absolute; inset: 40px 60px; border: 1px solid var(--hair); background: rgba(255,254,250,.78); box-shadow: 8px 8px 0 rgba(47,93,80,.07); }
+    .orbit::after { content: ""; position: absolute; left: 50%; top: 50%; width: 290px; height: 205px; transform: translate(-50%,-50%); border: 1px dashed #bbb9ae; border-radius: 50%; }
+    .pin { position: absolute; z-index: 2; left: var(--x); top: var(--y); transform: translate(-50%,-50%) rotate(var(--r)); min-width: 104px; padding: 10px 12px; border: 1px solid #c8c4b9; background: var(--paper); font-size: 12px; font-weight: 650; text-align: center; box-shadow: 3px 4px 0 rgba(47,93,80,.08); }
+    .pin::before { content: ""; position: absolute; left: 50%; top: -4px; width: 7px; height: 7px; border-radius: 50%; background: var(--berry); transform: translateX(-50%); }
+    .pin:nth-child(1) { --x: 19%; --y: 20%; --r: -2deg; } .pin:nth-child(2) { --x: 42%; --y: 13%; --r: 1deg; }
+    .pin:nth-child(3) { --x: 67%; --y: 15%; --r: -1deg; } .pin:nth-child(4) { --x: 84%; --y: 31%; --r: 2deg; }
+    .pin:nth-child(5) { --x: 84%; --y: 68%; --r: -2deg; } .pin:nth-child(6) { --x: 65%; --y: 85%; --r: 1deg; }
+    .pin:nth-child(7) { --x: 39%; --y: 87%; --r: -1deg; } .pin:nth-child(8) { --x: 16%; --y: 68%; --r: 2deg; }
+    .pin:nth-child(9) { --x: 50%; --y: 91%; --r: 1deg; } .pin:nth-child(10) { --x: 13%; --y: 40%; --r: -1deg; }
+    .orbit-ali { position: absolute; z-index: 3; left: 50%; top: 50%; display: grid; width: 150px; height: 150px; place-items: center; transform: translate(-50%,-50%); border: 1px solid var(--pine); border-radius: 50%; background: var(--paper); }
+    .orbit-ali .ali { width: 94px; height: 94px; }
+
+    /* 4. Three clipped conversation excerpts. */
+    .channel-desk { display: grid; grid-template-columns: repeat(3,1fr); gap: 26px; align-items: center; padding: 52px; }
+    .message-paper { position: relative; z-index: 1; min-height: 232px; padding: 20px; }
+    .message-paper:nth-child(1) { transform: rotate(-1.4deg); }
+    .message-paper:nth-child(2) { transform: translateY(-5px) rotate(.5deg); }
+    .message-paper:nth-child(3) { transform: rotate(1.2deg); }
+    .message-paper::before { content: ""; position: absolute; left: 50%; top: -9px; width: 44px; height: 17px; transform: translateX(-50%) rotate(-2deg); background: rgba(227,166,74,.28); }
+    .channel-name { padding-bottom: 12px; border-bottom: 1px solid var(--hair); color: var(--pine); font: italic 12px/1.2 var(--serif); }
+    .message-text { margin-top: 30px; font: 600 17px/1.45 var(--serif); }
+    .address { display: flex; align-items: center; gap: 7px; margin-top: 24px; color: var(--soft); font-size: 11px; }
+    .address .ali { width: 27px; height: 27px; }
+
+    /* 5. Four visible elements: rule plus three seals. */
+    .security-strip { display: grid; grid-template-columns: repeat(3,1fr); gap: 52px; align-items: center; padding: 76px clamp(36px,7vw,88px); background: var(--paper); }
+    .security-rule { position: absolute; left: 17%; right: 17%; top: 49%; border-top: 1px solid var(--hair); }
+    .seal { position: relative; z-index: 1; display: grid; justify-items: center; gap: 16px; text-align: center; }
+    .seal-mark { display: grid; width: 104px; height: 104px; place-items: center; border: 1px solid var(--pine); border-radius: 50%; outline: 1px solid var(--pine); outline-offset: -7px; background: var(--paper); color: var(--pine); font: 600 20px/1 var(--serif); }
+    .seal:last-child .seal-mark { border-color: #a47731; outline-color: #a47731; background: var(--berry-pale); color: #765416; }
+    .seal strong { display: block; font: 600 18px/1.2 var(--serif); }
+    .seal span { display: block; max-width: 180px; margin-top: 5px; color: var(--soft); font-size: 12px; line-height: 1.45; }
+
+    .ali-pebble { transform-origin: 53px 21px; animation: set-stone 3.4s ease-in-out infinite; }
+    .ali-eyes { transform-box: fill-box; transform-origin: center; animation: blink 6.2s infinite; }
+    @keyframes paper-in { from { opacity: 0; transform: translate(-18px,5px) rotate(-3deg); } to { opacity: 1; transform: rotate(-1.2deg); } }
+    @keyframes paper-up { from { opacity: 0; transform: translateY(14px) rotate(2deg); } to { opacity: 1; transform: rotate(.8deg); } }
+    @keyframes set-stone { 0%, 18%, 100% { transform: translateY(-8px) rotate(-7deg); opacity: 0; } 32%, 80% { transform: none; opacity: 1; } }
+    @keyframes blink { 0%, 95%, 100% { transform: scaleY(1); } 97% { transform: scaleY(.1); } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; } .ali-pebble { opacity: 1; transform: none; } }
+    @media (max-width: 820px) {
+      .intro { grid-template-columns: 1fr; gap: 24px; }
+      .study-head { grid-template-columns: 38px 1fr; }
+      .study-head p { grid-column: 2; }
+      .hero-paper { grid-template-columns: 1fr; gap: 24px; padding: 36px; }
+      .hero-paper::after { top: 16%; bottom: 16%; left: 50%; right: auto; border-top: 0; border-left: 1px dashed #aaa99f; }
+      .field-guide, .channel-desk, .security-strip { grid-template-columns: 1fr; }
+      .field-card { grid-template-columns: 110px 1fr; grid-template-rows: auto; border-right: 0; border-bottom: 1px solid var(--hair); }
+      .message-paper { min-height: 190px; }
+      .security-rule { top: 17%; bottom: 17%; left: 50%; right: auto; border-top: 0; border-left: 1px solid var(--hair); }
+      .tool-sheet { min-height: 500px; padding: 185px 22px 24px; }
+      .orbit { inset: 25px 22px auto; height: 150px; }
+      .orbit::after { display: none; }
+      .orbit-ali { top: 82px; width: 112px; height: 112px; }
+      .pin { position: relative; left: auto !important; top: auto !important; transform: rotate(var(--r)); }
+      .tool-sheet .orbit { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; align-content: start; padding: 150px 18px 18px; height: 440px; }
+    }
+    @media (max-width: 520px) { .page { width: calc(100% - 24px); } .channel-desk, .field-guide { padding: 18px; } .field-card { grid-template-columns: 86px 1fr; padding: 20px 14px; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar"><div class="brand"><span data-ali data-mood="idle" class="brand-mark"></span><span>LovAli</span></div><a class="back" href="index.html">Alle retninger</a></header>
+    <section class="intro"><div><div class="folio">Retning B · Nordic paper</div><h1>Et digitalt arbeidsbord.</h1></div><p>En varmere, redaksjonell retning inspirert av saksmapper, notater og dokumenter. Ali tilfører liv uten å gjøre uttrykket barnslig.</p></section>
+
+    <section class="study">
+      <div class="study-head"><span class="number">01</span><h2>Fra henvendelse til godkjenning</h2><p>Tre fysiske former gir arbeidsflyten en umiddelbar begynnelse, midtdel og slutt.</p></div>
+      <div class="frame hero-paper" aria-label="E-post går via Ali til et dokument for godkjenning">
+        <article class="letter sheet"><div class="paper-label">Innkommet · 09:14</div><strong>Kan dere sjekke avtalen?</strong><p>Vi trenger en vurdering før møtet torsdag.</p><div class="letter-rule"></div></article>
+        <div class="ali-bridge"><span data-ali data-mood="proud"></span><span>Ali klargjør</span></div>
+        <article class="decision sheet"><div class="paper-label">Klar for din vurdering</div><h3>Svar til Berg Eiendom</h3><p>Sak, frist og svarutkast er samlet.</p><button type="button" class="approve">Godkjenn og send</button></article>
+      </div>
+    </section>
+
+    <section class="study">
+      <div class="study-head"><span class="number">02</span><h2>Ansvar, forklart som en feltguide</h2><p>Tre oppslag viser hvor Ali er i arbeidet, og hvor advokatens ansvar begynner.</p></div>
+      <div class="frame field-guide">
+        <article class="field-card"><span data-ali data-mood="working"></span><div><span class="field-word">Ali gjør</span><h3>Samler grunnlaget</h3><p>Finner e-post, dokumenter og frister i riktig sak.</p></div></article>
+        <article class="field-card"><span data-ali data-mood="waiting"></span><div><span class="field-word">Venter på deg</span><h3>Ber om vurdering</h3><p>Stopper og viser nøyaktig hva du må ta stilling til.</p></div></article>
+        <article class="field-card"><span data-ali data-mood="concerned"></span><div><span class="field-word">Gjør aldri</span><h3>Tar avgjørelsen</h3><p>Sender ingenting uten klarsignal fra en ansvarlig.</p></div></article>
+      </div>
+    </section>
+
+    <section class="study">
+      <div class="study-head"><span class="number">03</span><h2>Ett kart over verktøyene</h2><p>Nøytrale navnelapper gjør det enkelt å teste sammensetningen før ekte logoer settes inn.</p></div>
+      <div class="frame tool-sheet">
+        <div class="orbit">
+          <span class="pin">Outlook</span><span class="pin">Teams</span><span class="pin">SharePoint</span><span class="pin">Word</span><span class="pin">iManage</span><span class="pin">Interaxo</span><span class="pin">Lovdata</span><span class="pin">Altinn</span><span class="pin">Slack</span><span class="pin">Visma</span>
+          <div class="orbit-ali"><span data-ali data-mood="happy"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="study">
+      <div class="study-head"><span class="number">04</span><h2>Tre kanaler, én beskjed</h2><p>Den redaksjonelle formen samler ulike kanaler uten å kopiere hele grensesnittet deres.</p></div>
+      <div class="frame channel-desk">
+        <article class="message-paper sheet"><div class="channel-name">Microsoft Teams</div><div class="message-text">«Ali, lag et svarutkast i Berg-saken.»</div><div class="address"><span data-ali data-mood="listening"></span>Sendt til Ali</div></article>
+        <article class="message-paper sheet"><div class="channel-name">Slack</div><div class="message-text">«Ali, lag et svarutkast i Berg-saken.»</div><div class="address"><span data-ali data-mood="listening"></span>Nevnte @Ali</div></article>
+        <article class="message-paper sheet"><div class="channel-name">Meldinger</div><div class="message-text">«Ali, lag et svarutkast i Berg-saken.»</div><div class="address"><span data-ali data-mood="listening"></span>Til Ali</div></article>
+      </div>
+    </section>
+
+    <section class="study">
+      <div class="study-head"><span class="number">05</span><h2>Sikkerhet med tre stempel</h2><p>Tre faktiske løfter. Ingen hengelås, sky eller komplisert nettverk.</p></div>
+      <div class="frame security-strip">
+        <div class="security-rule"></div>
+        <div class="seal"><div class="seal-mark">EØS</div><div><strong>Data blir i EØS</strong><span>Behandles innenfor europeiske grenser</span></div></div>
+        <div class="seal"><div class="seal-mark">0</div><div><strong>Modeller lagrer ingenting</strong><span>Innholdet ditt blir ikke modellminne</span></div></div>
+        <div class="seal"><div class="seal-mark">JA</div><div><strong>Du godkjenner</strong><span>Ali går videre når du sier ja</span></div></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (() => {
+      const stone = (cx, by, w, h) => { const t=h*.6,b=h*.4,l=cx-w/2,r=cx+w/2,my=by-b,k=.56; return `M${l},${my}C${l},${my-t*k} ${cx-(w/2)*k},${my-t} ${cx},${my-t}C${cx+(w/2)*k},${my-t} ${r},${my-t*k} ${r},${my}C${r},${my+b*k} ${cx+(w/2)*k},${by} ${cx},${by}C${cx-(w/2)*k},${by} ${l},${my+b*k} ${l},${my}Z`; };
+      const eyes={arc:{ew:3.1,eby:1.4,eth:3,ebh:-1.9},open:{ew:2.2,eby:0,eth:3,ebh:3},focus:{ew:2.4,eby:.4,eth:1.9,ebh:2.4}};
+      const eye=(x,y,p)=>{const yl=y+p.eby,l=x-p.ew,r=x+p.ew,f=n=>n.toFixed(2);return `M${f(l)},${f(yl)}C${f(l)},${f(yl-p.eth*1.1)} ${f(r)},${f(yl-p.eth*1.1)} ${f(r)},${f(yl)}C${f(r)},${f(yl+p.ebh*1.1)} ${f(l)},${f(yl+p.ebh*1.1)} ${f(l)},${f(yl)}Z`;};
+      const poses={idle:{e:"arc"},happy:{e:"arc",blush:1,hy:-1},proud:{e:"arc",blush:1,pebble:1,hy:-1},working:{e:"focus",hy:-4,hr:-3},waiting:{e:"open",hy:-7,hx:1},concerned:{e:"open",hy:1.6,hr:3,lean:-3,worry:1},listening:{e:"open",hx:2,hr:6,lean:4}};
+      const labels={idle:"rolig",happy:"glad",proud:"stolt",working:"jobber",waiting:"venter",concerned:"bekymret",listening:"lytter"};
+      const ali=mood=>{const p=poses[mood]||poses.idle,e=eyes[p.e],lx=p.worry?-1:0,lt=p.worry?20:0,rt=p.worry?-20:0;return `<svg class="ali" viewBox="0 0 100 100" role="img" aria-label="Ali er ${labels[mood]||"rolig"}"><g transform="rotate(${p.lean||0} 50 94)"><path d="${stone(50,94,84,26)}" fill="#2f5d50" stroke="#fffefa" stroke-width="3.2" paint-order="stroke"/><path d="${stone(48,69,60,24)}" fill="#2f5d50" stroke="#fffefa" stroke-width="3.2" paint-order="stroke" transform="rotate(-3 48 59)"/><g transform="translate(${p.hx||0} ${p.hy||0}) rotate(${2+(p.hr||0)} 51 44)"><path d="${stone(51,46,40,27)}" fill="#e3a64a" stroke="#fffefa" stroke-width="3.2" paint-order="stroke"/>${p.blush?'<g fill="#f2a07c" opacity=".45"><ellipse cx="40" cy="38.5" rx="3.2" ry="1.9"/><ellipse cx="62" cy="38.5" rx="3.2" ry="1.9"/></g>':''}<g class="ali-eyes" fill="#222923" stroke="#222923" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="${eye(45+lx,32,e)}" transform="rotate(${lt} ${45+lx} 32)"/><path d="${eye(57+lx,32,e)}" transform="rotate(${rt} ${57+lx} 32)"/></g>${p.pebble?`<path class="ali-pebble" d="${stone(53,21,13,8.5)}" fill="#e3a64a" stroke="#fffefa" stroke-width="3.2" paint-order="stroke"/>`:''}</g></g></svg>`;};
+      document.querySelectorAll("[data-ali]").forEach(node=>{node.innerHTML=ali(node.dataset.mood||"idle");});
+    })();
+  </script>
+</body>
+</html>

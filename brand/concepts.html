@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LovAli – maskotkonsepter</title>
+  <style>
+    :root {
+      --bg: #F7F8F6;
+      --pine: #2F5D50;
+      --multe: #E3A64A;
+      --granite: #222923;
+      --soft: #59635e;
+      --rule: #D9DED9;
+      --paper: #FFFFFF;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { color-scheme: light; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--granite);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+
+    header, main, footer {
+      width: min(1400px, calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(280px, .6fr);
+      gap: 48px;
+      padding: 72px 0 48px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      margin-bottom: 18px;
+      max-width: 760px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(42px, 5.5vw, 76px);
+      font-weight: 500;
+      letter-spacing: -.035em;
+      line-height: .98;
+    }
+
+    .lede {
+      max-width: 710px;
+      margin-bottom: 0;
+      color: var(--soft);
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .legend {
+      align-self: end;
+      padding-left: 24px;
+      border-left: 3px solid var(--multe);
+      color: var(--soft);
+      font-size: 14px;
+    }
+
+    .legend strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--granite);
+      font-size: 15px;
+    }
+
+    main { padding: 8px 0 80px; }
+
+    .concept {
+      padding: 56px 0 64px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .concept-head {
+      display: grid;
+      grid-template-columns: 1fr minmax(280px, 520px);
+      gap: 48px;
+      align-items: end;
+      margin-bottom: 24px;
+    }
+
+    .identity {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .mini {
+      width: 24px;
+      height: 24px;
+      flex: 0 0 24px;
+    }
+
+    .index {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--pine);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin-bottom: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 500;
+      letter-spacing: -.02em;
+      line-height: 1.1;
+    }
+
+    .concept-head p {
+      margin-bottom: 2px;
+      color: var(--soft);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .mood-grid {
+      display: grid;
+      grid-template-columns: repeat(8, minmax(112px, 1fr));
+      border: 1px solid var(--rule);
+      background: var(--rule);
+      gap: 1px;
+      overflow-x: auto;
+    }
+
+    .mood-card {
+      min-width: 112px;
+      padding: 15px 10px 12px;
+      background: var(--paper);
+      text-align: center;
+    }
+
+    .mood-card svg {
+      display: block;
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 7px;
+      overflow: visible;
+    }
+
+    .mood-name {
+      display: block;
+      color: var(--granite);
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    .mood-detail {
+      display: block;
+      min-height: 30px;
+      margin-top: 3px;
+      color: var(--soft);
+      font-size: 10.5px;
+      line-height: 1.35;
+    }
+
+    .cycle-row {
+      display: grid;
+      grid-template-columns: 174px 1fr;
+      min-height: 156px;
+      margin-top: 12px;
+      border: 1px solid var(--rule);
+      background: var(--paper);
+    }
+
+    .cycle-stage {
+      display: grid;
+      place-items: center;
+      border-right: 1px solid var(--rule);
+      background: var(--bg);
+    }
+
+    .cycle-stage svg {
+      width: 132px;
+      height: 132px;
+      overflow: visible;
+    }
+
+    .cycle-copy {
+      display: grid;
+      align-content: center;
+      padding: 22px 28px;
+    }
+
+    .cycle-label {
+      min-height: 30px;
+      margin: 0 0 14px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 23px;
+      line-height: 1.2;
+    }
+
+    .cycle-label span { color: var(--soft); }
+
+    .cycle-track {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 5px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .cycle-track li {
+      padding-top: 8px;
+      border-top: 2px solid var(--rule);
+      color: var(--soft);
+      font-size: 10.5px;
+      white-space: nowrap;
+      transition: color 180ms ease, border-color 180ms ease;
+    }
+
+    .cycle-track li.active {
+      border-color: var(--multe);
+      color: var(--granite);
+      font-weight: 700;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 32px;
+      padding: 28px 0 56px;
+      color: var(--soft);
+      font-size: 13px;
+    }
+
+    .mascot-svg .fill-pine { fill: var(--pine); }
+    .mascot-svg .fill-multe { fill: var(--multe); }
+    .mascot-svg .fill-granite { fill: var(--granite); }
+    .mascot-svg .fill-bg { fill: var(--bg); }
+    .mascot-svg .stroke-bg { stroke: var(--bg); }
+    .mascot-svg .stroke-pine { stroke: var(--pine); }
+    .mascot-svg .stroke-multe { stroke: var(--multe); }
+    .mascot-svg .stroke-granite { stroke: var(--granite); }
+    .eye {
+      fill: none;
+      stroke: var(--granite);
+      stroke-width: 2.5;
+      stroke-linecap: round;
+    }
+
+    @media (max-width: 980px) {
+      header, .concept-head { grid-template-columns: 1fr; gap: 24px; }
+      .legend { max-width: 640px; }
+      .mood-grid { grid-template-columns: repeat(4, minmax(130px, 1fr)); }
+      .cycle-row { grid-template-columns: 150px 1fr; }
+      .cycle-track { grid-template-columns: repeat(4, 1fr); row-gap: 10px; }
+    }
+
+    @media (max-width: 640px) {
+      header, main, footer { width: min(100% - 28px, 1400px); }
+      header { padding-top: 44px; }
+      .concept { padding-block: 42px 50px; }
+      .mood-grid { grid-template-columns: repeat(2, minmax(125px, 1fr)); }
+      .cycle-row { grid-template-columns: 1fr; }
+      .cycle-stage { border-right: 0; border-bottom: 1px solid var(--rule); }
+      .cycle-copy { padding: 20px; }
+      .cycle-track { grid-template-columns: repeat(2, 1fr); }
+      footer { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cycle-track li { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Åtte måter Ali kan ha en sjel</h1>
+      <p class="lede">Tre vardefamilier og fem andre retninger. Hver figur er tegnet på samme 100 × 100-rutenett, med få flater, tre farger og følelser som først og fremst sitter i tyngdepunktet.</p>
+    </div>
+    <aside class="legend">
+      <strong>Lesetesten</strong>
+      Det lille merket ved hvert navn er 24 px. Formen skal fortsatt være tydelig uten etikett. Ingen munn, ingen rekvisitter som må forklares, ingen gradienter eller tilfeldig “håndtegnet” støy.
+    </aside>
+  </header>
+
+  <main id="concepts" aria-live="off"></main>
+
+  <footer>
+    <span>LovAli maskotstudie · 2. oktober 2026</span>
+    <span>Furu #2F5D50 · Multe #E3A64A · Granitt #222923</span>
+  </footer>
+
+  <script>
+    const NS = "http://www.w3.org/2000/svg";
+    const GAP = "stroke=\"#F7F8F6\" stroke-width=\"3.2\" paint-order=\"stroke\" stroke-linejoin=\"round\"";
+
+    const moods = [
+      { id: "rolig", label: "Rolig", detail: "stødig og våken" },
+      { id: "nysgjerrig", label: "Nysgjerrig", detail: "lener seg mot saken" },
+      { id: "tenker", label: "Tenker", detail: "veier opplysninger" },
+      { id: "jobber", label: "Jobber", detail: "gjør grunnarbeidet" },
+      { id: "glad", label: "Glad", detail: "en varm lettelse" },
+      { id: "bekymret", label: "Bekymret", detail: "noe mangler en eier" },
+      { id: "venter", label: "Venter", detail: "holder igjen for deg" },
+      { id: "ferdig", label: "Stolt / ferdig", detail: "satt på plass" }
+    ];
+
+    const T = (x=0, y=0, r=0, sx=1, sy=1) => ({ x, y, r, sx, sy });
+
+    const sharedPose = {
+      rolig:      { root: T() },
+      nysgjerrig: { root: T(1, -1, 2, 1, 1) },
+      tenker:     { root: T(-1, 0, -3, 1, 1) },
+      jobber:     { root: T(0, -1, 0, 1.02, .98) },
+      glad:       { root: T(0, -3, 0, 1.04, 1.04) },
+      bekymret:   { root: T(0, 4, -2, 1.03, .93) },
+      venter:     { root: T(0, 1, 0, 1, .98) },
+      ferdig:     { root: T(0, -1, 0, 1.02, 1.02) }
+    };
+
+    const vardePose = (headWork=-11, headWait=-7) => ({
+      rolig:      { root:T(),                 head:T(),                    mid:T(),             action:T(0,0,0,1,0) },
+      nysgjerrig: { root:T(1,-1,1),           head:T(3,-2,8),              mid:T(),             action:T(0,0,0,1,0) },
+      tenker:     { root:T(-1,0,-2),          head:T(-2,-2,-9),            mid:T(),             action:T(0,0,0,1,0) },
+      jobber:     { root:T(0,1,0,1.01,.98),   head:T(3,headWork,5),        mid:T(0,1,0,1,.96),  action:T(0,-2,0,1,.8) },
+      glad:       { root:T(0,-3,0,1.03,1.03), head:T(0,-2,0,1.03,1.03),   mid:T(),             action:T(0,0,0,1,0) },
+      bekymret:   { root:T(0,4,-1,1.02,.94),  head:T(-3,1,-8,1,.94),      mid:T(1,1,2,1,.98),  action:T(0,0,0,1,0) },
+      venter:     { root:T(),                 head:T(0,headWait,0),        mid:T(),             action:T(0,-2,0,1,.45) },
+      ferdig:     { root:T(0,-1),             head:T(0,0,0,1.02,1),       mid:T(0,0,0,1.01,1), action:T(0,0,0,1,1) }
+    });
+
+    const concepts = [
+      {
+        id: "varde-hoy",
+        name: "Varde Høy",
+        kind: "Vardevariant 01",
+        why: "Nærmest originalen: tre flatere steiner, men en rankere rytme og tydeligere håndplasserte skuldre. Den varme toppsteinen er fortsatt Ali.",
+        origin: [50, 90],
+        face: { left:[44,28], right:[56,28] },
+        groups: [
+          { id:"base", origin:[50,84], html:`<path class="fill-pine" ${GAP} d="M10 82 Q12 72 25 69 Q43 66 62 68 Q84 69 90 80 Q88 91 71 94 L27 94 Q11 92 10 82Z"/>` },
+          { id:"mid", origin:[49,65], html:`<path class="fill-pine" ${GAP} d="M22 61 Q26 52 39 50 Q55 48 69 52 Q78 56 77 64 Q74 71 61 73 L37 72 Q23 70 22 61Z"/>` },
+          { id:"head", origin:[50,43], html:`<path class="fill-multe" ${GAP} d="M32 34 Q33 21 43 16 Q56 12 65 22 Q70 31 67 42 Q64 49 52 50 Q39 50 33 43 Q31 39 32 34Z"/><path class="eye" data-eye="left"/><path class="eye" data-eye="right"/>` },
+          { id:"action", origin:[50,49], html:`<path class="stroke-granite" d="M45 51 L42 55 M55 51 L58 55" fill="none" stroke-width="2" stroke-linecap="round"/>` }
+        ],
+        poses: vardePose(-12,-8)
+      },
+      {
+        id: "varde-kraftig",
+        name: "Varde Kraftig",
+        kind: "Vardevariant 02",
+        why: "Lavere og bredere, som en gammel varde som har stått lenge. Den leser ekstra godt i små statusflater og føles mindre som stablede spa-steiner.",
+        origin: [50, 89],
+        face: { left:[44,43], right:[56,43] },
+        groups: [
+          { id:"base", origin:[50,84], html:`<path class="fill-pine" ${GAP} d="M7 78 Q11 68 27 65 L71 66 Q87 68 93 79 L89 91 Q72 95 48 94 Q24 95 10 90Z"/>` },
+          { id:"mid", origin:[49,66], html:`<path class="fill-pine" ${GAP} d="M17 59 Q23 50 38 48 L69 50 Q82 53 83 62 Q80 72 66 75 L34 74 Q20 71 17 59Z"/>` },
+          { id:"head", origin:[50,58], html:`<path class="fill-multe" ${GAP} d="M29 41 Q33 31 45 28 Q60 27 69 36 Q74 46 69 56 Q61 62 47 62 Q33 61 28 52 Q26 46 29 41Z"/><path class="eye" data-eye="left"/><path class="eye" data-eye="right"/>` },
+          { id:"action", origin:[50,60], html:`<path class="stroke-granite" d="M43 62 L39 66 M57 62 L61 66" fill="none" stroke-width="2" stroke-linecap="round"/>` }
+        ],
+        poses: vardePose(-10,-7)
+      },
+      {
+        id: "varde-vekse",
+        name: "Varde Vekselstein",
+        kind: "Vardevariant 03",
+        why: "Tre ulike steintyper i veksel: furu, granitt og multe. Mer grafisk og egenartet, men fortsatt samme fortelling om lag på lag og mennesket på toppen.",
+        origin: [50, 89],
+        face: { left:[43,33], right:[55,33] },
+        groups: [
+          { id:"base", origin:[50,84], html:`<path class="fill-granite" ${GAP} d="M9 78 Q14 68 29 66 Q55 64 76 68 Q89 71 91 81 Q88 91 73 93 L27 93 Q12 91 9 78Z"/>` },
+          { id:"mid", origin:[48,66], html:`<path class="fill-pine" ${GAP} d="M19 59 Q24 50 37 48 Q56 46 71 52 Q79 56 78 65 Q73 72 60 73 L34 72 Q21 69 19 59Z"/>` },
+          { id:"head", origin:[49,49], html:`<path class="fill-multe" ${GAP} d="M31 36 Q34 25 45 21 Q58 21 65 30 Q70 39 66 48 Q60 55 48 55 Q36 54 31 46 Q29 41 31 36Z"/><path class="eye" data-eye="left"/><path class="eye" data-eye="right"/>` },
+          { id:"action", origin:[49,54], html:`<path class="stroke-granite" d="M43 56 L40 60 M55 56 L58 60" fill="none" stroke-width="2" stroke-linecap="round"/>` }
+        ],
+        poses: vardePose(-11,-8)
+      },
+      {
+        id: "sel",
+        name: "Steinselen",
+        kind: "Annen retning 01",
+        why: "En liten selunge skåret som én granittstein. Norsk kyst, rolig lojalitet og en tung kropp som kan uttrykke mye uten armer, munn eller kostyme.",
+        origin: [50, 83],
+        face: { left:[57,47], right:[68,46] },
+        groups: [
+          { id:"body", origin:[48,75], html:`<path class="fill-granite" ${GAP} d="M12 73 Q17 58 34 53 Q47 49 56 55 Q65 61 69 73 Q75 80 86 84 Q74 91 57 88 L29 90 Q15 87 12 73Z"/>` },
+          { id:"head", origin:[63,63], html:`<path class="fill-multe" ${GAP} d="M45 51 Q47 39 59 34 Q72 30 80 40 Q85 50 79 61 Q73 70 59 70 Q48 67 45 58Z"/><path class="eye" data-eye="left"/><path class="eye" data-eye="right"/>` },
+          { id:"flipper", origin:[45,75], html:`<path class="fill-pine" ${GAP} d="M38 67 Q50 69 57 78 Q50 85 38 82 Q31 75 38 67Z"/>` },
+          { id:"action", origin:[47,80], html:`<path class="stroke-multe" d="M43 84 Q49 78 55 84" fill="none" stroke-width="3" stroke-linecap="round"/>` }
+        ],
+        poses: {
+          rolig:{root:T(),head:T(),body:T(),flipper:T(),action:T(0,0,0,1,0)},
+          nysgjerrig:{root:T(1,-1,2),head:T(4,-5,10),body:T(),flipper:T(1,-1,4),action:T(0,0,0,1,0)},
+          tenker:{root:T(-1,0,-2),head:T(-3,-2,-9),body:T(),flipper:T(-1,0,-5),action:T(0,0,0,1,0)},
+          jobber:{root:T(0,0,0,1.02,.98),head:T(1,-2,3),body:T(),flipper:T(5,-7,22),action:T(0,-3,0,1,1)},
+          glad:{root:T(0,-3,0,1.04,1.04),head:T(1,-1,2),body:T(),flipper:T(3,-2,12),action:T(0,0,0,1,0)},
+          bekymret:{root:T(0,4,-3,1.03,.92),head:T(-4,3,-10,1,.94),body:T(),flipper:T(-2,2,-8),action:T(0,0,0,1,0)},
+          venter:{root:T(0,2),head:T(0,-1,0),body:T(),flipper:T(4,-5,16),action:T(0,-1,0,1,.35)},
+          ferdig:{root:T(0,-1,0,1.02,1.02),head:T(2,-2,5),body:T(),flipper:T(4,-5,18),action:T(0,0,0,1,1)}
+        }
+      },
+      {
+        id: "lykt",
+        name: "Arbeidslykten",
+        kind: "Annen retning 02",
+        why: "En norsk arbeidslykt som lyser på underlaget, ikke på seg selv. Glasset blir varmere når Ali arbeider; håndtak og tyngde gjør resten av uttrykket.",
+        origin: [50, 88],
+        face: { left:[44,56], right:[56,56] },
+        groups: [
+          { id:"handle", origin:[50,42], html:`<path class="stroke-pine" d="M33 39 Q33 18 50 17 Q67 18 67 39" fill="none" stroke-width="7" stroke-linecap="round"/>` },
+          { id:"body", origin:[50,69], html:`<path class="fill-pine" ${GAP} d="M28 39 L72 39 L79 86 Q67 92 50 92 Q33 92 21 86Z"/>` },
+          { id:"head", origin:[50,72], html:`<path class="fill-multe" ${GAP} d="M34 48 L66 48 L68 78 Q59 83 50 83 Q41 83 32 78Z"/><path class="eye" data-eye="left"/><path class="eye" data-eye="right"/>` },
+          { id:"cap", origin:[50,42], html:`<path class="fill-granite" ${GAP} d="M29 36 Q50 31 71 36 L70 46 L30 46Z"/>` },
+          { id:"action", origin:[50,85], html:`<path class="stroke-multe" d="M30 91 L23 96 M50 92 L50 99 M70 91 L77 96" fill="none" stroke-width="3" stroke-linecap="round"/>` }
+        ],
+        poses: {
+          rolig:{root:T(),handle:T(),body:T(),head:T(),cap:T(),action:T(0,0,0,1,0)},
+          nysgjerrig:{root:T(1,-1,5),handle:T(1,-2,4),body:T(),head:T(),cap:T(),action:T(0,0,0,1,0)},
+          tenker:{root:T(-1,0,-5),handle:T(-3,0,-10),body:T(),head:T(),cap:T(),action:T(0,0,0,1,0)},
+          jobber:{root:T(0,-2,0,1.02,1.02),handle:T(0,-5,0,1,1.08),body:T(),head:T(0,0,0,1.09,1.08),cap:T(),action:T(0,0,0,1,1)},
+          glad:{root:T(0,-3,0,1.03,1.03),handle:T(0,-3,0,1.04,1.04),body:T(),head:T(0,0,0,1.05,1.05),cap:T(),action:T(0,0,0,1,.45)},
+          bekymret:{root:T(0,4,-4,1.03,.94),handle:T(-2,2,-8),body:T(),head:T(0,1,0,1,.9),cap:T(),action:T(0,0,0,1,0)},
+          venter:{root:T(0,1),handle:T(0,-7,0,1,1.12),body:T(),head:T(0,0,0,1,.92),cap:T(),action:T(0,0,0,1,.2)},
+          ferdig:{root:T(0,-1,0,1.02,1.02),handle:T(),body:T(),head:T(0,0,0,1.04,1.03),cap:T(),action:T(0,0,0,1,.85)}
+        }
+      },
+      {
+        id: "brev",
+        name: "Brevet",
+        kind: "Annen retning 03",
+        why: "Et brettet dokument som bokstavelig talt gjør forarbeidet klart. En skjev fold gir signaturformen; klaffen kan løftes, vente og legges ned.",
+        origin: [50, 87],
+        face: { left:[43,54], right:[55,54] },
+        groups: [
+          { id:"body", origin:[50,66], html:`<path class="fill-pine" ${GAP} d="M19 31 L73 27 L82 82 Q67 90 49 89 Q32 90 18 82Z"/>` },
+          { id:"head", origin:[49,69], html:`<path class="fill-bg" ${GAP} d="M25 42 L75 38 L76 78 Q62 84 49 83 Q35 84 24 77Z"/><path class="eye" data-eye="left"/><path class="eye" data-eye="right"/>` },
+          { id:"flap", origin:[50,43], html:`<path class="fill-multe" ${GAP} d="M20 31 L73 27 L51 54Z"/>` },
+          { id:"fold", origin:[51,54], html:`<path class="stroke-granite" d="M24 77 L51 54 L76 78" fill="none" stroke-width="2.2" stroke-linejoin="round" opacity=".7"/>` },
+          { id:"action", origin:[68,75], html:`<path class="fill-multe" ${GAP} d="M61 72 L75 72 L75 84 L61 84Z"/>` }
+        ],
+        poses: {
+          rolig:{root:T(),body:T(),head:T(),flap:T(),fold:T(),action:T(0,0,0,0,0)},
+          nysgjerrig:{root:T(1,-1,4),body:T(),head:T(),flap:T(2,-4,9),fold:T(),action:T(0,0,0,0,0)},
+          tenker:{root:T(-1,0,-4),body:T(),head:T(),flap:T(-3,-2,-8),fold:T(),action:T(0,0,0,0,0)},
+          jobber:{root:T(0,-1,0,1.02,.99),body:T(),head:T(),flap:T(0,-13,0,1,.82),fold:T(),action:T(0,-3,0,1,1)},
+          glad:{root:T(0,-3,0,1.04,1.04),body:T(),head:T(),flap:T(0,-3,0,1.03,1.03),fold:T(),action:T(0,0,0,0,0)},
+          bekymret:{root:T(0,4,-3,1.03,.93),body:T(),head:T(0,2,0,1,.94),flap:T(-3,2,-7),fold:T(),action:T(0,0,0,0,0)},
+          venter:{root:T(0,1),body:T(),head:T(),flap:T(0,-9,0,1,.88),fold:T(),action:T(0,0,0,0,0)},
+          ferdig:{root:T(0,-1,0,1.02,1.02),body:T(),head:T(),flap:T(0,0,0,1.01,1),fold:T(),action:T(0,0,0,1,1)}
+        }
+      },
+      {
+        id: "hare",
+        name: "Vardevokteren",
+        kind: "Annen retning 04",
+        why: "En liten fjellhare som holder seg ved vardene. Ørene er et tydelig signal på avstand: ett lytter, begge arbeider, begge synker når noe er galt.",
+        origin: [50, 88],
+        face: { left:[43,48], right:[55,48] },
+        groups: [
+          { id:"body", origin:[50,75], html:`<path class="fill-pine" ${GAP} d="M20 72 Q22 57 37 53 Q56 48 70 59 Q79 68 76 82 Q65 91 48 91 Q30 91 21 82Z"/>` },
+          { id:"head", origin:[50,65], html:`<path class="fill-multe" ${GAP} d="M31 46 Q35 35 48 32 Q62 32 69 43 Q73 55 67 67 Q59 75 47 73 Q34 71 30 59Z"/><path class="eye" data-eye="left"/><path class="eye" data-eye="right"/>` },
+          { id:"earL", origin:[42,36], html:`<path class="fill-pine" ${GAP} d="M37 38 Q28 18 36 10 Q47 19 47 38Z"/>` },
+          { id:"earR", origin:[58,35], html:`<path class="fill-pine" ${GAP} d="M53 38 Q52 14 61 8 Q69 20 64 40Z"/>` },
+          { id:"action", origin:[73,82], html:`<path class="fill-multe" ${GAP} d="M66 78 Q75 70 82 79 Q82 89 71 90Z"/>` }
+        ],
+        poses: {
+          rolig:{root:T(),body:T(),head:T(),earL:T(),earR:T(),action:T(0,0,0,0,0)},
+          nysgjerrig:{root:T(2,-1,4),body:T(),head:T(3,-3,7),earL:T(-2,1,-8),earR:T(2,-5,10,1,1.08),action:T(0,0,0,0,0)},
+          tenker:{root:T(-1,0,-3),body:T(),head:T(-3,-1,-7),earL:T(-3,4,-15,1,.9),earR:T(-1,0,-4),action:T(0,0,0,0,0)},
+          jobber:{root:T(0,-1,0,1.02,.98),body:T(),head:T(2,-2,3),earL:T(-1,-4,-4,1,1.08),earR:T(1,-5,5,1,1.1),action:T(0,-5,0,1,1)},
+          glad:{root:T(0,-4,0,1.04,1.04),body:T(),head:T(0,-1),earL:T(-2,-2,-8),earR:T(2,-2,8),action:T(0,0,0,0,0)},
+          bekymret:{root:T(0,5,-3,1.04,.9),body:T(),head:T(-3,3,-8,1,.94),earL:T(1,10,34,1,.78),earR:T(-2,9,-31,1,.78),action:T(0,0,0,0,0)},
+          venter:{root:T(0,2,0,1,.96),body:T(),head:T(),earL:T(0,4,10,1,.9),earR:T(0,4,-10,1,.9),action:T(0,-3,0,1,.4)},
+          ferdig:{root:T(0,-2,0,1.03,1.03),body:T(),head:T(2,-2,4),earL:T(-1,-1,-5),earR:T(1,-2,5),action:T(0,0,0,1,1)}
+        }
+      },
+      {
+        id: "perm",
+        name: "Permen",
+        kind: "Annen retning 05",
+        why: "En liten ringperm, fordi orden og sporbarhet er nærmere advokatens arbeid enn et abstrakt AI-symbol. Ryggen står støtt mens arket beveger seg.",
+        origin: [50, 88],
+        face: { left:[47,52], right:[59,52] },
+        groups: [
+          { id:"body", origin:[51,66], html:`<path class="fill-pine" ${GAP} d="M24 23 L76 27 L78 88 L24 86Z"/>` },
+          { id:"spine", origin:[31,56], html:`<path class="fill-multe" ${GAP} d="M20 22 L37 24 L37 87 L20 85Z"/>` },
+          { id:"head", origin:[55,67], html:`<path class="fill-bg" ${GAP} d="M38 35 L70 37 L71 78 L38 77Z"/><path class="eye" data-eye="left"/><path class="eye" data-eye="right"/>` },
+          { id:"page", origin:[68,58], html:`<path class="fill-bg" ${GAP} d="M66 31 L76 34 L77 82 L67 79Z"/>` },
+          { id:"action", origin:[31,56], html:`<circle class="fill-granite" cx="29" cy="43" r="3"/><circle class="fill-granite" cx="29" cy="63" r="3"/>` }
+        ],
+        poses: {
+          rolig:{root:T(),body:T(),spine:T(),head:T(),page:T(),action:T()},
+          nysgjerrig:{root:T(1,-1,4),body:T(),spine:T(),head:T(2,-1,4),page:T(4,-2,10),action:T()},
+          tenker:{root:T(-1,0,-4),body:T(),spine:T(),head:T(-2,0,-3),page:T(-2,1,-8),action:T()},
+          jobber:{root:T(0,-1,0,1.02,.99),body:T(),spine:T(),head:T(),page:T(9,-5,22,1.12,1),action:T(0,-1)},
+          glad:{root:T(0,-3,0,1.04,1.04),body:T(),spine:T(),head:T(),page:T(3,-2,7),action:T()},
+          bekymret:{root:T(0,4,-3,1.03,.93),body:T(),spine:T(),head:T(0,2,0,1,.94),page:T(-2,2,-7),action:T()},
+          venter:{root:T(0,1),body:T(),spine:T(),head:T(),page:T(7,-3,17,1.08,1),action:T()},
+          ferdig:{root:T(0,-1,0,1.02,1.02),body:T(),spine:T(),head:T(),page:T(1,0,2),action:T(0,0,0,1.08,1.08)}
+        }
+      }
+    ];
+
+    function eyeGeometry(face, mood) {
+      const make = (side) => {
+        const [x, y] = face[side];
+        const s = side === "left" ? -1 : 1;
+        if (mood === "glad" || mood === "ferdig") return [x-3, y+1, x, y-3, x+3, y+1];
+        if (mood === "bekymret") return [x-2.4, y+s*.8, x, y-s*.9, x+2.4, y-s*.5];
+        if (mood === "tenker") return [x+.7, y-3, x+.9, y, x+.8, y+3];
+        if (mood === "nysgjerrig") return [x+1.4, y-3.2, x+1.5, y, x+1.4, y+3.2];
+        if (mood === "venter") return [x-2.4, y, x, y+.4, x+2.4, y];
+        if (mood === "jobber") return [x-.5, y-3, x, y, x+.5, y+3];
+        return [x, y-2.6, x+.15, y, x, y+2.6];
+      };
+      return { left: make("left"), right: make("right") };
+    }
+
+    function pathFromEye(v) {
+      return `M${v[0].toFixed(2)} ${v[1].toFixed(2)} Q${v[2].toFixed(2)} ${v[3].toFixed(2)} ${v[4].toFixed(2)} ${v[5].toFixed(2)}`;
+    }
+
+    function resolvedPose(concept, mood) {
+      const source = concept.poses[mood] || {};
+      const result = {};
+      for (const group of [{id:"root"}, ...concept.groups]) {
+        result[group.id] = { ...T(), ...(source[group.id] || {}) };
+      }
+      return result;
+    }
+
+    function transformString(t, origin) {
+      const [ox, oy] = origin;
+      return `translate(${t.x.toFixed(3)} ${t.y.toFixed(3)}) rotate(${t.r.toFixed(3)} ${ox} ${oy}) translate(${ox} ${oy}) scale(${t.sx.toFixed(4)} ${t.sy.toFixed(4)}) translate(${-ox} ${-oy})`;
+    }
+
+    function buildSvg(concept, mood, className="") {
+      const svg = document.createElementNS(NS, "svg");
+      svg.setAttribute("viewBox", "0 0 100 100");
+      svg.setAttribute("class", `mascot-svg ${className}`.trim());
+      svg.setAttribute("role", "img");
+      svg.setAttribute("aria-label", `${concept.name}, ${moods.find(m => m.id === mood).label}`);
+
+      const root = document.createElementNS(NS, "g");
+      root.dataset.part = "root";
+      root.setAttribute("transform", transformString(resolvedPose(concept, mood).root, concept.origin));
+      svg.appendChild(root);
+
+      const pose = resolvedPose(concept, mood);
+      for (const def of concept.groups) {
+        const group = document.createElementNS(NS, "g");
+        group.dataset.part = def.id;
+        group.setAttribute("transform", transformString(pose[def.id], def.origin));
+        group.innerHTML = def.html;
+        root.appendChild(group);
+      }
+
+      const eyes = eyeGeometry(concept.face, mood);
+      svg.querySelector('[data-eye="left"]').setAttribute("d", pathFromEye(eyes.left));
+      svg.querySelector('[data-eye="right"]').setAttribute("d", pathFromEye(eyes.right));
+      return svg;
+    }
+
+    function renderConcept(concept, index) {
+      const section = document.createElement("section");
+      section.className = "concept";
+      section.id = concept.id;
+
+      const head = document.createElement("div");
+      head.className = "concept-head";
+      const title = document.createElement("div");
+      title.className = "identity";
+      const mini = buildSvg(concept, "rolig", "mini");
+      title.append(mini);
+      const names = document.createElement("div");
+      names.innerHTML = `<span class="index">${concept.kind}</span><h2>${concept.name}</h2>`;
+      title.append(names);
+      const why = document.createElement("p");
+      why.textContent = concept.why;
+      head.append(title, why);
+
+      const grid = document.createElement("div");
+      grid.className = "mood-grid";
+      for (const mood of moods) {
+        const card = document.createElement("div");
+        card.className = "mood-card";
+        card.append(buildSvg(concept, mood.id));
+        card.insertAdjacentHTML("beforeend", `<span class="mood-name">${mood.label}</span><span class="mood-detail">${mood.detail}</span>`);
+        grid.append(card);
+      }
+
+      const cycle = document.createElement("div");
+      cycle.className = "cycle-row";
+      const stage = document.createElement("div");
+      stage.className = "cycle-stage";
+      const animated = buildSvg(concept, "rolig", "animated");
+      stage.append(animated);
+      const copy = document.createElement("div");
+      copy.className = "cycle-copy";
+      copy.innerHTML = `<p class="cycle-label"><strong>${moods[0].label}</strong> <span>${moods[0].detail}</span></p><ol class="cycle-track">${moods.map((m,i) => `<li class="${i===0 ? "active" : ""}">${m.label}</li>`).join("")}</ol>`;
+      cycle.append(stage, copy);
+      section.append(head, grid, cycle);
+      document.querySelector("#concepts").append(section);
+      startCycle(concept, animated, cycle, index * 240);
+    }
+
+    const lerp = (a, b, t) => a + (b - a) * t;
+    const ease = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2;
+    const mixT = (a, b, t) => ({ x:lerp(a.x,b.x,t), y:lerp(a.y,b.y,t), r:lerp(a.r,b.r,t), sx:lerp(a.sx,b.sx,t), sy:lerp(a.sy,b.sy,t) });
+
+    function startCycle(concept, svg, row, delay) {
+      if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      let index = 0;
+      let currentPose = resolvedPose(concept, moods[0].id);
+      let currentEyes = eyeGeometry(concept.face, moods[0].id);
+
+      const go = () => {
+        const next = (index + 1) % moods.length;
+        const targetPose = resolvedPose(concept, moods[next].id);
+        const targetEyes = eyeGeometry(concept.face, moods[next].id);
+        const start = performance.now();
+        const duration = 820;
+
+        function frame(now) {
+          const raw = Math.min(1, (now - start) / duration);
+          const t = ease(raw);
+          const mixed = {};
+          for (const key of Object.keys(targetPose)) {
+            mixed[key] = mixT(currentPose[key], targetPose[key], t);
+            const el = svg.querySelector(`[data-part="${key}"]`);
+            const origin = key === "root" ? concept.origin : concept.groups.find(g => g.id === key).origin;
+            el.setAttribute("transform", transformString(mixed[key], origin));
+          }
+          for (const side of ["left", "right"]) {
+            const eye = currentEyes[side].map((v, i) => lerp(v, targetEyes[side][i], t));
+            svg.querySelector(`[data-eye="${side}"]`).setAttribute("d", pathFromEye(eye));
+          }
+          if (raw < 1) requestAnimationFrame(frame);
+          else {
+            index = next;
+            currentPose = targetPose;
+            currentEyes = targetEyes;
+            const mood = moods[index];
+            row.querySelector(".cycle-label").innerHTML = `<strong>${mood.label}</strong> <span>${mood.detail}</span>`;
+            row.querySelectorAll(".cycle-track li").forEach((li, i) => li.classList.toggle("active", i === index));
+            setTimeout(go, 1250);
+          }
+        }
+        requestAnimationFrame(frame);
+      };
+      setTimeout(go, 900 + delay);
+    }
+
+    concepts.forEach(renderConcept);
+  </script>
+</body>
+</html>
